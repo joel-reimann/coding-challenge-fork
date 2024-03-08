@@ -1,35 +1,24 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import Title from './components/Title'
+import React from 'react';
+import { useTodo } from './hooks/useTodo';
+import Title from './components/Title';
+import TodoForm from './components/TodoForm';
+import TodoList from './components/TodoList';
+import FilterButtons from './components/FilterButtons';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const {
+    newTodo, setNewTodo, filter, setFilter, addTodo, deleteTodo, toggleTodoComplete, getFilteredTodos
+  } = useTodo();
 
-
-  const handleClick = () => {
-    console.log('clicked')
-    setCount((c) => c + 1)
-  }
-  
   return (
-    <>
-      <div className='flex'>
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-          <img src={reactLogo} className="logo react" alt="React logo" />
-      </div>
-      <Title title={'React App'} description={"This is a simple React App."} />
-      <div className="">
-        <button className='my-2' onClick={handleClick}>
-          count is {count}
-        </button>
-        <p className='my-2'>
-          Edit <code>src/App.jsx</code> and save to see your changes
-        </p>
-      </div>
-    </>
-  )
+    <div className="container max-w-md mx-auto p-8 bg-white rounded-lg shadow">
+      <Title title="To-do list" description="Simple implementation with adding, deleting, and filter functionalities" />
+      <FilterButtons filter={filter} setFilter={setFilter} />
+      <TodoList todos={getFilteredTodos()} deleteTodo={deleteTodo} toggleTodoComplete={toggleTodoComplete} />
+      <TodoForm newTodo={newTodo} setNewTodo={setNewTodo} addTodo={addTodo} />
+    </div>
+  );
 }
 
-export default App
+export default App;
+  
