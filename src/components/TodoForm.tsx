@@ -8,7 +8,7 @@ const TodoForm = ({ newTodo, setNewTodo, addTodo }) => {
         value={newTodo}
         onChange={(e) => setNewTodo(e.target.value)}
         placeholder="Add to do"
-        className="text-white rounded-full border p-2 mr-4 w-full"
+        className="rounded-full border p-2 mr-4 w-full"
       />
     </form>
   );
